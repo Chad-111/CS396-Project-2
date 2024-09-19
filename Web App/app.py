@@ -12,6 +12,9 @@ with app.app_context():
 
 @app.route('/')
 def index():
+    #Connect to the Dtaabase here.
+    # def connect_db()
+    # connection = mysql.connector.connect
     if request.args:
         return render_template('index.html', messages =request.args['messages'])
     else:
