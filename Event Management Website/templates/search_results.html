@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h1>Search Results for "{{ query }}"</h1>
+
+    <div class="search-results">
+        {% if events %}
+            {% for event in events %}
+                <div class="event-card">
+                    <h3>{{ event[1] }} (Hosted by {{ event[8] }})</h3>
+                    <p>Date: {{ event[2] }} at {{ event[3] }}</p>
+                    <p>Location: {{ event[4] }}</p>
+                    <p>Category: {{ event[6] }}</p>
+                    <p>Description: {{ event[5] }}</p>
+                    <a href="/event/{{ event[0] }}" class="button">View Event</a>
+                    <button class="rsvp-button" data-event-id="{{ event[0] }}">RSVP</button>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No events found for your search query.</p>
+        {% endif %}
+    </div>
+
+    <!-- RSVP Modal (Initially Hidden) -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="rsvp-event-title"></h3>
+            <form id="rsvpForm">
+                <label for="guests">Number of Guests (including yourself):</label>
+                <input type="number" id="guests" name="guests" min="1" required>
+                <input type="hidden" id="eventId" name="event_id">
+                <button type="submit" class="button">Submit RSVP</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Hide the RSVP modal by default
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = document.getElementById('rsvpModal');
+            modal.style.display = 'none';  // Hide the modal initially
+
+            // Handle RSVP button click to show the modal
+            document.querySelectorAll('.rsvp-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    var eventId = this.getAttribute('data-event-id');
+                    var eventTitle = this.parentNode.querySelector('h3').textContent;
+                    
+                    // Show modal
+                    modal.style.display = 'block';
+                    document.getElementById('rsvp-event-title').textContent = eventTitle;
+                    document.getElementById('eventId').value = eventId;
+                });
+            });
+
+            // Close modal when clicking the close button
+            document.querySelector('.close').addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            // Close modal if clicked outside of modal content
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        });
+    </script>
+{% endblock %}

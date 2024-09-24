@@ -1,0 +1,48 @@
+/* Styling for event details page */
+
+/* Form styling for RSVP */
+.rsvp-form {
+    max-width: 400px;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.rsvp-form .form-group {
+    margin-bottom: 15px;
+}
+
+.rsvp-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Submit button for RSVP */
+.rsvp-form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rsvp-form button:hover {
+    background-color: #45a049;
+}
+
+/* Event details styling */
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
