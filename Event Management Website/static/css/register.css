@@ -1,0 +1,61 @@
+/* Styling for registration page */
+
+/* Styling for the popup */
+.popup {
+    display: none;
+    text-align: center;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    margin-top: 5px;
+    color: red;
+    font-size: 14px;
+    z-index: 1;
+}
+
+/* Error message styling */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Registration form container */
+.register-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Form group styling for spacing */
+.register-form .form-group {
+    margin-bottom: 15px;
+}
+
+/* Input field styling */
+.register-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Submit button styling */
+.register-form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+    background-color: #45a049;
+}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{{ event.name }}{% endblock %}
+
+{% block content %}
+
+    <!-- Link to the specific CSS file for this page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/event_details.css') }}">
+
+    <!-- Event Details Container -->
+    <div class="event-details-container">
+        <h1>{{ event.name }}</h1>
+        <p><strong>Date:</strong> {{ event.date }} at {{ event.time }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+
+    {% if attending_guests is not none %}
+        <!-- Show that the user is attending with guests -->
+        <p><strong>You are attending this event</strong> with {{ attending_guests }} additional guest(s).</p>
+
+        <!-- Edit RSVP Button -->
+        <a href="/edit_rsvp/{{ event.id }}" class="edit-rsvp-btn">Edit RSVP</a>
+        
+        <!-- Remove RSVP Button -->
+        <form method="POST" action="/remove_rsvp/{{ event.id }}" class="rsvp-remove-form">
+            <button type="submit" class="submit-button remove-button">Remove RSVP</button>
+        </form>
+    
+    {% else %}
+        <!-- Show RSVP Form if not already attending -->
+        {% if 'logged_in' in session %}
+            <form method="POST" action="/rsvp/{{ event.id }}" class="rsvp-form margin-top">
+                <div class="form-group">
+                    <label for="guests">Number of Guests (including yourself):</label>
+                    <input tabindex="1" type="number" id="guests" name="guests" min="1" max="{{ event.capacity }}" required>
+                </div>
+                <button type="submit" class="submit-button">RSVP</button>
+            </form>
+        {% else %}
+            <p>Please <a href="/login">login</a> to RSVP.</p>
+        {% endif %}
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Attending Events{% endblock %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="/static/css/events.css">
+</head>
+
+<h1>Events You're Attending</h1>
+
+<ul>
+    {% if attending_events %}
+        {% for event in attending_events %}
+            <li>
+            <div class="event-card">
+                <h3>{{ event.name }}</h3>                
+                <p>Date: {{ event.date }} at {{ event.time }}</p>
+                <p>Location: {{ event.location }}</p>
+
+                <a href="/event/{{ event.id }}" class="button">View Details</a>
+                <!-- Check if the user is hosting the event -->
+                {% if event.host_id == session['user']['id'] %}
+                    <p class="hosted">(You're hosting this event)</p>
+                {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    {% else %}
+        <li>You are not attending any events.</li>
+    {% endif %}
+</ul>
+
+{% endblock %}
