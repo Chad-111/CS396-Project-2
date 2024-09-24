@@ -1,0 +1,42 @@
+/* Form container styling for create event page */
+.create-event-form {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Form group styling for better spacing */
+.create-event-form .form-group {
+    margin-bottom: 15px;
+}
+
+
+/* Input fields styling for create event form */
+.create-event-form input, 
+.create-event-form textarea {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: -webkit-fill-available;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Button styling specific to the create event form */
+.create-event-form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-event-form button:hover {
+    background-color: #45a049;
+}

@@ -1,0 +1,46 @@
+/* Styling for index (home) page */
+
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 50px;
+}
+
+.messages {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.action-links {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.action-links a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.action-links a.button-login:hover {
+    background-color: #45a049;
+}
+
+.action-links a.button-register:hover {
+    background-color: #ff9800;
+}
+
+.action-links a.button-register {
+    background-color: #f57c00;
+}
