@@ -1,24 +1,23 @@
 import sqlite3
 
+# Database connection helper function
 def get_db_connection():
-    """Establishes and returns a connection to the SQLite database."""
+    """
+    Establishes and returns a connection to the SQLite database.
+    """
     conn = sqlite3.connect('users.db')  # Ensure 'users.db' is the correct path to your database
-    conn.row_factory = sqlite3.Row  # This allows you to treat the rows as dictionaries
+    conn.row_factory = sqlite3.Row  # Enables rows to be treated as dictionaries for easier data manipulation
     return conn
 
+# System initialization function to set up database schema
 def sys_init():
-    """Initialize the database schema and perform any required migrations."""
+    """
+    Initialize the database schema and perform any required migrations.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Alter table to add 'hashed_password' if not already exists
-    try:
-        cursor.execute('ALTER TABLE users ADD COLUMN hashed_password TEXT')
-    except sqlite3.OperationalError:
-        # Ignore the error if the column already exists
-        pass
-
-    # Create users table with the correct schema
+    # Create 'users' table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,7 +30,7 @@ def sys_init():
         )
     ''')
 
-    # Create events table
+    # Create 'events' table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS events (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,13 +40,13 @@ def sys_init():
             location TEXT NOT NULL,
             description TEXT,
             capacity INTEGER NOT NULL,
-            host TEXT NOT NULL,
+            host_id INTEGER NOT NULL,
             category TEXT,
-            FOREIGN KEY(host) REFERENCES users(first_name)
+            FOREIGN KEY(host_id) REFERENCES users(id)
         )
     ''')
 
-    # Create rsvps table
+    # Create 'rsvps' table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS rsvps (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -59,5 +58,6 @@ def sys_init():
         )
     ''')
 
-    conn.commit()  # Commit any changes
-    conn.close()  # Close the connection
+    conn.commit()  # Commit the changes to the database
+    conn.close()  # Close the database connection
+
